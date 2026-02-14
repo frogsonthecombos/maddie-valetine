@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Princess Maddie 💖</title>
+<title>{{ page.title | default: "Princess Maddie 💖" }}</title>
 
 <style>
 body {
@@ -153,17 +153,8 @@ button {
 }
 </style>
 </head>
-
 <body>
-
-<h1>🎀 Maddie 🎀<br>Will You Be My Valentine? 💖✨</h1>
-
-<div class="buttons">
-    <button id="yesBtn">Yes obviously 💕</button>
-    <button id="noBtn">No 😢</button>
-</div>
-
-<div id="message"></div>
+{{ content }}
 
 <script>
 const yesBtn = document.getElementById("yesBtn");
@@ -193,19 +184,15 @@ let index = 0;
 noBtn.addEventListener("click", () => {
     yesScale += 0.3;
     noScale -= 0.05;
-
     yesBtn.style.transform = `scale(${yesScale})`;
     noBtn.style.transform = `scale(${noScale})`;
-
     noBtn.classList.add("shake");
     setTimeout(() => noBtn.classList.remove("shake"), 300);
-
     message.textContent = messages[index % messages.length];
     index++;
 });
 
 yesBtn.addEventListener("click", () => {
-
     document.body.innerHTML = `
         <div class="celebration">
             💖 SHE SAID YES 💖
@@ -219,20 +206,16 @@ yesBtn.addEventListener("click", () => {
 
         <div class="polaroid">
             <div class="tape"></div>
-            <img src="photo.jpg">
+            <img src="assets/images/photo.jpg">
         </div>
 
-        <audio id="loveSong" src="tennessee-orange.mp3"></audio>
+        <audio id="loveSong" src="assets/audio/tennessee-orange.mp3"></audio>
     `;
 
     document.body.style.background = "linear-gradient(135deg, #ff66b2, #ff99cc)";
-
     const song = document.getElementById("loveSong");
     song.volume = 0.8;
-    song.play().catch(() => {
-        console.log("Autoplay blocked.");
-    });
-
+    song.play().catch(() => console.log("Autoplay blocked."));
     startHeartExplosion();
 });
 
@@ -247,7 +230,6 @@ function createFloat() {
     document.body.appendChild(float);
     setTimeout(()=>float.remove(),6000);
 }
-
 setInterval(createFloat,300);
 
 function startHeartExplosion(){
@@ -260,13 +242,11 @@ function startHeartExplosion(){
         heart.style.fontSize="24px";
         heart.style.transition="all 1s ease-out";
         document.body.appendChild(heart);
-
         setTimeout(()=>{
             heart.style.left=Math.random()*100+"vw";
             heart.style.top=Math.random()*100+"vh";
             heart.style.opacity="0";
         },10);
-
         setTimeout(()=>heart.remove(),1000);
     }
 }
