@@ -6,10 +6,11 @@
 <title>{{ page.title | default: "Princess Maddie 💖" }}</title>
 
 <style>
+/* Body & Background */
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-x: hidden;
     text-align: center;
     font-family: 'Arial Rounded MT Bold', 'Comic Sans MS', cursive;
     background: linear-gradient(-45deg, #ff9ad5, #ffc2e6, #ffe0f5, #ffb3d9);
@@ -23,6 +24,7 @@ body {
     100% { background-position: 0% 50%; }
 }
 
+/* Header */
 h1 {
     margin-top: 90px;
     font-size: 2.4rem;
@@ -31,6 +33,7 @@ h1 {
     padding: 0 20px;
 }
 
+/* Buttons */
 .buttons {
     margin-top: 50px;
 }
@@ -65,6 +68,7 @@ button {
     padding: 0 25px;
 }
 
+/* Floating emojis */
 .float {
     position: fixed;
     bottom: -20px;
@@ -76,6 +80,7 @@ button {
     to { transform: translateY(-110vh); opacity: 0; }
 }
 
+/* Button shake */
 .shake {
     animation: shake 0.3s;
 }
@@ -88,8 +93,9 @@ button {
     100% { transform: translateX(0); }
 }
 
+/* Celebration text */
 .celebration {
-    margin-top: 100px;
+    margin-top: 40px;
     font-size: 2.8rem;
     color: white;
     animation: pop 0.6s ease forwards;
@@ -102,16 +108,30 @@ button {
     padding: 0 20px;
 }
 
+/* Scrapbook page */
+.scrapbook {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: url('assets/images/scrapbook-paper.jpg') repeat;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 50px 10px;
+    box-sizing: border-box;
+}
+
+/* Polaroids */
 .polaroid {
     background: white;
     padding: 15px 15px 60px 15px;
-    width: 85%;
-    max-width: 320px;
-    margin: 40px auto 0 auto;
+    width: 90%;
+    max-width: 220px;
+    margin: 15px;
     border-radius: 8px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     transform: rotate(-3deg);
-    animation: pop 0.8s ease;
     position: relative;
 }
 
@@ -126,33 +146,43 @@ button {
     bottom: 15px;
     left: 0;
     width: 100%;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-family: cursive;
     color: #ff4da6;
 }
 
 .tape {
-    width: 80px;
-    height: 25px;
+    width: 60px;
+    height: 20px;
     background: rgba(255,255,255,0.7);
     position: absolute;
-    top: -15px;
+    top: -12px;
     left: 50%;
     transform: translateX(-50%) rotate(-8deg);
     border-radius: 4px;
 }
 
-@keyframes glow {
-    from { box-shadow: 0 0 15px #fff; }
-    to { box-shadow: 0 0 30px #ff66cc; }
+/* Floating scrapbook decorations */
+.scrapbook .decor {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 6s linear forwards;
 }
 
 @keyframes pop {
     from { transform: scale(0); }
     to { transform: scale(1); }
 }
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+    h1 { font-size: 1.8rem; margin-top: 60px; }
+    button { font-size: 16px; padding: 12px 24px; }
+    .sub { font-size: 1rem; }
+}
 </style>
 </head>
+
 <body>
 {{ content }}
 
@@ -166,17 +196,17 @@ let noScale = 1;
 
 const messages = [
 "Maddieeee are you sure? 🥺",
-"Pretty princesses say yes 👑",
-"I’ll buy you Starbucks forever ☕💖",
+"Pretty princesses say yes ",
+"I’ll buy you Starbucks forever ",
 "You’d look so cute as my Valentine 🎀",
-"I pinky promise I’ll spoil you 💅",
+"I pinky promise I’ll spoil you ",
 "This is literally destiny 💞",
 "I’ll give you my hoodie 😭",
-"Target runs together?? 🛍️",
+"Target runs together?? ",
 "Don’t break my heart princess 💔",
 "You know you want tooo 💗",
 "I’ll plan cute dates 🌸",
-"Just press yes alreadyeee 😭💕"
+"Just press yes alreadyeee 💕"
 ];
 
 let index = 0;
@@ -193,36 +223,60 @@ noBtn.addEventListener("click", () => {
 });
 
 yesBtn.addEventListener("click", () => {
+
+    // Scrapbook page with 3 photos
     document.body.innerHTML = `
-        <div class="celebration">
-            💖 SHE SAID YES 💖
-        </div>
-
+        <div class="celebration">💖 YOU SAID YES 💖</div>
         <div class="sub">
-            Maddie is officially my Valentine 👑✨<br><br>
-            From now on it's Tennessee Orange forever 🍊🧡<br>
-            Cutest couple alive 💅💕
+            You're is officially my Valentine <br>
+            From now on it's you and me forever <br>
+            I love you
         </div>
 
-        <div class="polaroid">
-            <div class="tape"></div>
-            <img src="assets/images/photo.jpg">
+        <div class="scrapbook">
+            <div class="polaroid" style="transform: rotate(-2deg);">
+                <div class="tape"></div>
+                <img src="assets/images/photo1.jpg">
+            </div>
+            <div class="polaroid" style="transform: rotate(3deg);">
+                <div class="tape"></div>
+                <img src="assets/images/photo2.jpg">
+            </div>
+            <div class="polaroid" style="transform: rotate(-5deg);">
+                <div class="tape"></div>
+                <img src="assets/images/photo3.jpg">
+            </div>
         </div>
 
-        <audio id="loveSong" src="assets/audio/tennessee-orange.mp3"></audio>
+        <audio id="loveSong" src="assets/audio/tennessee-orange.mp3" autoplay></audio>
     `;
 
-    document.body.style.background = "linear-gradient(135deg, #ff66b2, #ff99cc)";
+    document.body.style.background = "#ffe6f0";
+
     const song = document.getElementById("loveSong");
     song.volume = 0.8;
     song.play().catch(() => console.log("Autoplay blocked."));
+
     startHeartExplosion();
+
+    // Random scrapbook decorations
+    const scrapbook = document.querySelector(".scrapbook");
+    for(let i=0;i<30;i++){
+        const decor = document.createElement("div");
+        decor.classList.add("decor");
+        const emojis = ["🌸","💗","🎀"];
+        decor.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
+        decor.style.left = Math.random()*90 + "vw";
+        decor.style.top = Math.random()*90 + "vh";
+        scrapbook.appendChild(decor);
+    }
 });
 
+// Floating emojis animation
 function createFloat() {
     const float = document.createElement("div");
     float.classList.add("float");
-    const emojis = ["💖","✨","🌸","💗","🎀","👑"];
+    const emojis = ["🌸","💗","🎀"];
     float.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
     float.style.left = Math.random()*100 + "vw";
     float.style.fontSize = (Math.random()*20+18)+"px";
@@ -232,6 +286,7 @@ function createFloat() {
 }
 setInterval(createFloat,300);
 
+// Heart explosion on yes
 function startHeartExplosion(){
     for(let i=0;i<100;i++){
         const heart=document.createElement("div");
